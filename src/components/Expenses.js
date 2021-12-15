@@ -1,10 +1,19 @@
-const Expenses = () => {
+import Expense from "./Expense"
+
+const Expenses = ({ expenses }) => {
     const myStyle = {
         "backgroundColor": "#5f5f5f",
         "color": "#fff",
         "padding": "1rem",
+        "lineHeight": "3.5rem",
         "borderRadius": "1rem"
     }
+    
+    let total = 0
+    expenses.forEach(expense => {
+        total += expense.cost
+    });
+
     return (
         <div className="container-flex mt-3" style={myStyle}>
             <table width="100%">
@@ -16,25 +25,13 @@ const Expenses = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td colSpan="15">1. Coffee</td>
-                        <td> card</td>
-                        <td className="text-center"> 23.50</td>
-                    </tr>
-                    <tr>
-                        <td colSpan="15">2. Cab</td>
-                        <td> cash</td>
-                        <td className="text-center"> 70.00</td>
-                    </tr>
-                    <tr>
-                        <td colSpan="15">3. Lunch</td>
-                        <td> card</td>
-                        <td className="text-center"> 63.50</td>
-                    </tr>
+                    {expenses.map((expense) => {
+                        return <Expense key={expense.id} expense={expense} />
+                    })}
                     <tr>
                         <td colSpan="15"></td>
                         <td> <strong>Total</strong></td>
-                        <td className="text-center"> 157.00</td>
+                        <td className="text-center"> {total}</td>
                     </tr>
                 </tbody>
             </table>
