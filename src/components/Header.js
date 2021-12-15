@@ -5,7 +5,8 @@ const Header = () => {
     const myStyles = {
         "backgroundColor": "#000",
         "color": "#fff",
-        "padding": "2rem"
+        "padding": "2rem",
+        "borderRadius": "1rem"
     }
     return (
         <div className="h1 text-center d-flex justify-content-around" style={myStyles}>
