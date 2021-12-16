@@ -1,6 +1,6 @@
-import AddButton from "./AddButton"
+import Button from "./Button"
 
-const Header = () => {
+const Header = ({ onAdd, showForm }) => {
 
     const myStyles = {
         "backgroundColor": "#000",
@@ -9,9 +9,17 @@ const Header = () => {
         "borderRadius": "1rem"
     }
     return (
-        <div className="h1 text-center d-flex justify-content-around" style={myStyles}>
+        <div 
+            className="h1 text-center d-flex justify-content-around" 
+            style={myStyles}
+            onClick={() => onAdd(showForm)}
+        >
             <h1>Expense Tracker</h1>
-            <AddButton />
+            <Button
+                color={showForm ? 'red' : 'green'}
+                text={showForm ? 'Close' : 'Add'}
+                icon={showForm ? 'close' : 'add'}
+            />
         </div>
     )
 }

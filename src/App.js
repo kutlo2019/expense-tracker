@@ -5,7 +5,7 @@ import AddExpense from "./components/AddExpense";
 import { useState } from 'react'
 
 function App() {
-
+  const [showForm, setShowForm] = useState(false)
   const [ expenses, setExpenses ] = useState([
       {
         description: "Coffee",
@@ -28,14 +28,20 @@ function App() {
         category: null,
         id: 3
       }
-    ])
+  ])
+
   const addExpense = (expense) => {
     setExpenses([...expenses, expense])
   }
+
+  const addShowForm = (bool) => {
+    setShowForm(!bool)
+  }
+
   return (
     <div className="container p-3">
-      <Header />
-      <AddExpense onAdd={addExpense}/>
+      <Header onAdd={addShowForm} showForm={showForm} />
+      {showForm ? <AddExpense expenses={expenses} onAdd={addExpense}/> : ''}
       <Expenses expenses={expenses}/>
       <Footer />
     </div>
